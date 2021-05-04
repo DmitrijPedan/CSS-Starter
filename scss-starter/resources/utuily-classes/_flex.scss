@@ -1,0 +1,27 @@
+$justify: (flex-start, flex-end, center, space-around, space-around, space-between, space-evenly);
+@each $just in $justify {
+  .just-cont-#{$just} {
+    justify-content: #{$just};
+  }
+}
+
+$align: (flex-start, flex-end, center, baseline);
+@each $al in $align {
+  .align-items-#{$al} {
+    align-items: #{$al};
+  }
+}
+
+$directions: (row, row-reverse, column, column-reverse);
+@each $dir in $directions {
+  .direct-#{$dir} {
+    flex-direction: #{$dir};
+  }
+}
+
+$wraps: (wrap, nowrap, wrap-reverse);
+@each $wrap in $wraps {
+  .#{$wrap} {
+    flex-wrap: #{$wrap};
+  }
+}

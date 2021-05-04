@@ -1,0 +1,6 @@
+$displays: (block, inline, inline-block, flex, inline-flex);
+@each $display in $displays {
+  .ds-#{$display} {
+    display: #{$display}!important;
+  }
+}

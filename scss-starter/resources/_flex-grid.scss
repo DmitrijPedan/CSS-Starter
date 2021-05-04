@@ -1,0 +1,90 @@
+@import "configs";
+@import "mixins";
+
+.content {
+  margin: 0 auto;
+  max-width: $content_max_width;
+}
+
+.container,
+.container-fluid {
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 $gap;
+}
+
+.container.no-gaps,
+.container-fluid.no-gaps {
+  padding: 0;
+}
+
+.container {
+
+  @include breakpoint-down(sm) {
+    max-width: map-get($breakpoints, sm) - 30px;
+  }
+
+  @include breakpoint-up(sm) {
+    max-width: map-get($breakpoints, sm) - 30px;
+  }
+
+  @include breakpoint-up(md) {
+    max-width: map-get($breakpoints, md) - 36px;
+  }
+
+  @include breakpoint-up(lg) {
+    max-width: map-get($breakpoints, lg) - 60px;
+  }
+
+  @include breakpoint-up(xl) {
+    max-width: map-get($breakpoints, xl) - 80px;
+  }
+
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 (-$gap);
+
+  [class^="col-"] {
+    padding: 0 #{$gap}
+  }
+}
+
+.row.no-gaps {
+  margin: 0;
+
+  [class^="col-"] {
+    padding: 0
+  }
+}
+
+//add dynamic responsive classes
+.row {
+
+  @each $col in $cols {
+    .col-#{$col} {
+      width: ($col / 12 * 100%);
+    }
+  }
+
+  @each $key, $breakpoint in $breakpoints {
+    @include breakpoint-up($key) {
+      @each $col in $cols {
+        .col-#{$key + '-' + $col} {
+          width: ($col / 12 * 100%);
+        }
+      }
+    }
+  }
+
+}
+
+@each $mb in (1,2,3) {
+  .row.mb-#{$mb} [class^="col-"] {
+    margin-bottom: $gap * $mb;
+  }
+}
+
+

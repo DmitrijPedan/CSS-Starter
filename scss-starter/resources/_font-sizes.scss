@@ -1,0 +1,15 @@
+@import "configs";
+@import "mixins";
+
+
+html {
+  font-size: 16px;
+  @if(map-get($configs, use_rems)) {
+    @include breakpoint-down(lg) {
+      font-size: 14px;
+    }
+    @include breakpoint-down(md) {
+      font-size: 12px;
+    }
+  }
+}

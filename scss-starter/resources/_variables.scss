@@ -1,0 +1,42 @@
+//add css variables
+@import "configs";
+
+@function get_theme() {
+  @return map-get($configs, use_theme);
+}
+
+:root {
+
+  //if adding CSS colors variables is allowed
+  @if(map-get($configs, add_css_colors)) {
+
+    // set selected theme variables ('light' or 'dark')
+    @if(#{get_theme()} != 'auto') {
+      @each $key, $color in map-get($colors, #{get_theme()}) {
+        --#{$key + '-color'}: #{$color}
+      }
+    }
+    // browser auto detection theme ('auto')
+    @else if(#{get_theme()} == 'auto') {
+      @media (prefers-color-scheme: light) {
+        @each $key, $color in map-get($colors, light) {
+          --#{$key + '-color'}: #{$color}
+        }
+      }
+      @media (prefers-color-scheme: dark) {
+        @each $key, $color in map-get($colors, dark) {
+          --#{$key + '-color'}: #{$color}
+        }
+      }
+    }
+
+  }
+
+  //if adding CSS breakpoints variables is allowed
+  @if(map-get($configs, add_css_breakpoints)) {
+    @each $key, $breakpoint in $breakpoints {
+      --#{$key + '-breakpoint'}: #{$breakpoint}
+    }
+  }
+
+}

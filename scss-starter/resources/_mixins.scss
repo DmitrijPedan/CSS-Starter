@@ -1,0 +1,17 @@
+//breakpoints
+@mixin breakpoint-down($name) {
+  @media (max-width: (map-get($breakpoints, $name) - 0.02px)) {
+    @content;
+  }
+}
+@mixin breakpoint-up($name) {
+  @media (min-width: map-get($breakpoints, $name)) {
+    @content;
+  }
+}
+@mixin breakpoint-between($start, $end) {
+  @media (min-width: map-get($breakpoints, $start)) and (max-width: (map-get($breakpoints, $end) - 0.02px)){
+    @content;
+  }
+}
+

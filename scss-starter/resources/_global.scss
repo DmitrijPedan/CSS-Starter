@@ -1,0 +1,47 @@
+@import "configs";
+
+body {
+
+  font-family: "Arial", sans-serif;
+
+  margin: 0;
+  padding: 0;
+
+  @if(map-get($configs, add_css_colors)) {
+    background-color: var(--background-color);
+  } @else {
+    background-color: map-get($colors, background);
+  }
+
+  * {
+    @if(map-get($configs, add_css_colors)) {
+      color: var(--text-color);
+    } @else {
+      color: map-get($colors, text);
+    }
+  }
+
+  a {
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  p {
+    margin: 0 0 $paragraph_mb 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 $headings_mb 0;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+}
